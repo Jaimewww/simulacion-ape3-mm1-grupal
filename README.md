@@ -76,6 +76,10 @@ El programa simula los escenarios uno por uno y muestra en la terminal dos tabla
 - **Teoría vs simulación:** tiempo de espera (Wq) y tamaño de la cola (Lq), teóricos y
   simulados, con la diferencia en porcentaje.
 
+Cada tabla se imprime con su leyenda arriba: el significado de cada variable entre
+paréntesis, por ejemplo `λ (tasa de llegada de clientes)`, para que la salida se
+entienda sin tener que abrir el informe.
+
 Después abre tres gráficas (se cierra cada ventana para ver la siguiente). Las imágenes
 quedan guardadas en la carpeta `graficas/`.
 

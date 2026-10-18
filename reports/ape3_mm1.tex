@@ -369,14 +369,22 @@ simulados de 10 réplicas.}
 Los mismos valores son los que imprime el programa en la terminal al ejecutar
 \texttt{python3 main.py}:
 
-\begin{alltt}\small
+\begin{alltt}\footnotesize
 === Valores teóricos ===
+\(\lambda\) (tasa de llegada de clientes)  \(\mu\) (tasa de servicio del servidor)
+\(\rho\) (utilización del servidor)  L (clientes en el sistema)
+Lq (clientes en la cola)  W (tiempo en el sistema)
+Wq (tiempo de espera en la cola)
+
 Escenario          \(\lambda\)     \(\mu\)        \(\rho\)        L       Lq        W       Wq
 Escenario 1      2.0   3.0    0.667    2.000    1.333    1.000    0.667
 Escenario 2      2.5   3.0    0.833    5.000    4.167    2.000    1.667
 Escenario 3      2.9   3.0    0.967   29.000   28.033   10.000    9.667
 
 === Teoría vs simulación ===
+Wq (tiempo de espera en la cola)  Lq (clientes en la cola)
+Dif % (diferencia frente al valor teórico)
+
 Escenario       Wq teórico  Wq simulado   Dif %   Lq teórico  Lq simulado   Dif %
 Escenario 1          0.667        0.669     0.4        1.333        1.335     0.1
 Escenario 2          1.667        1.814     8.8        4.167        4.550     9.2
