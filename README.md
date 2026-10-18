@@ -83,6 +83,9 @@ entienda sin tener que abrir el informe.
 Después abre tres gráficas (se cierra cada ventana para ver la siguiente). Las imágenes
 quedan guardadas en la carpeta `graficas/`.
 
+Si no hay entorno gráfico (por ejemplo al ejecutar por SSH, en un servidor o con
+`MPLBACKEND=Agg`), no se abre ninguna ventana y las imágenes quedan igual en `graficas/`.
+
 Si en algún escenario `λ` es mayor o igual que `μ`, el programa avisa que el sistema no
 es estable, no lo simula y sigue con los demás.
 

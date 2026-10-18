@@ -1,16 +1,34 @@
 # Gráficas de la práctica. Se guardan en la carpeta graficas/.
 import os
-import numpy as np
+import warnings
+
 import matplotlib.pyplot as plt
+import numpy as np
 
 CARPETA = "graficas"
 VENTANA_COLA = 200          # hasta qué instante se muestra la cola
 CLIENTES_MOSTRADOS = 300    # cuántos clientes se muestran en la gráfica de esperas
 
 
+def mostrar():
+    # Cuando no hay ventana disponible (por SSH, en un servidor o con
+    # MPLBACKEND=Agg), plt.show() avisa que el backend no puede mostrar la figura.
+    # La imagen ya quedó guardada, así que ese aviso es ruido y se silencia; si hay
+    # ventana disponible se muestra igual que siempre.
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message=".*is non-interactive.*")
+        plt.show()
+
+
 def guardar(nombre_archivo):
-    os.makedirs(CARPETA, exist_ok=True)
+    try:
+        os.makedirs(CARPETA, exist_ok=True)
+    except OSError as error:
+        # Sin permisos, o con una ruta inválida, no hay dónde dejar la imagen.
+        raise SystemExit(f"No se pudo crear la carpeta {CARPETA}/: {error}") from error
     plt.savefig(os.path.join(CARPETA, nombre_archivo), dpi=120)
+    mostrar()
+    plt.close()     # se cierra para que la próxima gráfica no la vuelva a mostrar
 
 
 def titulo_escenario(r):
@@ -36,7 +54,6 @@ def grafica_cola(resultados):
     plt.xlabel("Tiempo")
     plt.tight_layout()
     guardar("cola_en_el_tiempo.png")
-    plt.show()
 
 
 def grafica_esperas(resultados):
@@ -56,7 +73,6 @@ def grafica_esperas(resultados):
     plt.xlabel("Número de cliente")
     plt.tight_layout()
     guardar("tiempos_de_espera.png")
-    plt.show()
 
 
 def grafica_comparacion(resultados):
@@ -87,4 +103,3 @@ def grafica_comparacion(resultados):
 
     plt.tight_layout()
     guardar("teoria_vs_simulacion.png")
-    plt.show()
